@@ -3,8 +3,11 @@ import axios from 'axios';
 import { PUSH_TO_CART } from '../reducers/mainReducer';
 
 function* pushToCart () {
-    const cart = yield select((state) => state.main.cart)
-    const product = Object.fromEntries(cart.map(elem => [elem.id, elem.qty]))
+    const cart = yield select((state) => state.main.cart);
+    const formData = new FormData();
+    cart.forEach(elem => {
+        formData.append(`product[${elem.id}]`, Number(elem.qty))
+    })
     axios({
         method: 'post',
         url: 'https://datainlife.ru/junior_task/add_basket.php',
@@ -13,7 +16,7 @@ function* pushToCart () {
             "type": 'formData'
           },
         data: 
-            {product}                 
+            formData                
     })
     .then(function (response) {
     console.log(response);
