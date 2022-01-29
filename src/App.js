@@ -1,22 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Table from './component/Table';
-import Total from './component/Total';
 import { Routes, Route } from 'react-router-dom'
-
+import RidPage from './component/RidPage';
 
 function App() {
 
-  const cart = useSelector(state => state.main.cart);
-
   return (
-    <div>
     <Routes>
-      <Route path = "/*" element={<Table />} />
-      
+      <Route path = '/*' element={<Table />} />
+      <Route path = '/:rid' element={<RidPage/>} />
     </Routes>
-    {cart&&<Total />}
-    </div>
   );
 }
 

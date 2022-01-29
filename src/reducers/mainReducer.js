@@ -1,10 +1,15 @@
 export const SET_CART_ITEMS = 'SET_CART_ITEMS';
 export const QTY_CHANGE = 'QTY_CHANGE';
-export const SET_DATA = 'SET_DATA'
+export const SET_DATA = 'SET_DATA';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const FETCH_DATA = 'FETCH_DATA';
+export const SET_IS_LOADING = 'SET_IS_LOADING';
+export const PUSH_TO_CART = 'PUSH_TO_CART';
 
 export const initialState = {
     cart: [],
-    data: []
+    data: [],
+    isLoading: false
 }
 const mainReducer = (state = initialState, action) => {
     switch(action.type) {
@@ -32,6 +37,18 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: action.payload
+            }
+
+        case REMOVE_ITEM:
+            return {
+                ...state,
+                cart: state.cart.filter(item => item.id !== action.payload.id)
+            }
+
+        case SET_IS_LOADING:
+            return {
+                ...state,
+                isLoading: action.payload
             }
         
         default:

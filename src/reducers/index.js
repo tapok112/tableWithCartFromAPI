@@ -1,5 +1,5 @@
 import { combineReducers} from 'redux';
-import mainReducer, { SET_CART_ITEMS, QTY_CHANGE, SET_DATA } from './mainReducer';
+import mainReducer, { SET_CART_ITEMS, QTY_CHANGE, SET_DATA, REMOVE_ITEM, FETCH_DATA, SET_IS_LOADING, PUSH_TO_CART } from './mainReducer';
 
 export default combineReducers({
     main: mainReducer
@@ -20,3 +20,17 @@ export const setData = (payload) => {
         payload: payload
     })
 }
+export const removeItem = (payload) => {
+    return ({type: REMOVE_ITEM,
+        payload: payload
+    })
+}
+export const fetchData = () => {
+    return ({type: FETCH_DATA
+    })
+}
+export const pushToCart = () => {
+    return ({type: PUSH_TO_CART
+    })
+}
+export const setIsLoading = payload => ({type: SET_IS_LOADING, payload})
